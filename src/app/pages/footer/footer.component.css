@@ -1,0 +1,12 @@
+:host {
+    display: block;
+    background-color: #2A2A2A;
+    grid-area: footer;
+    height: 4.25rem;
+}
+
+.copy {
+    padding-top: 25px;
+    color: white;
+    text-align: center;
+}
