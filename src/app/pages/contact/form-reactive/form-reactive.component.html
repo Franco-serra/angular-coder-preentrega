@@ -1,0 +1,19 @@
+
+    <form [formGroup]="form">
+        <label for="name"><span>Nombre:</span></label>
+        <input id="name" type="text" formControlName="name" />
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+            <span class="error-1">El Nombre es inválido</span>
+        </div>
+        <label for="email"><span>Email:</span></label>
+        <input id="email" type="text" formControlName="email" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+            <span class="error-2">El Email es inválido</span>
+        </div>
+        <label for="message"><span>Mensaje</span></label>
+        <textarea name="message" id="message-1" formControlName="message"></textarea>
+        <div *ngIf="form.get('message')?.invalid && form.get('message')?.touched">
+            <span class="error-3">El Mensaje es inválido</span>
+        </div>
+        <button type="submit" [disabled]="form.invalid">Enviar</button>
+    </form>

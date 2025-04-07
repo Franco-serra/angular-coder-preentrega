@@ -1,0 +1,56 @@
+form {
+    height: 100vh;
+}
+
+input {
+    margin-left: 25%;
+    display: flex;
+    width: 50%;;
+    align-content: center;
+    margin-top: 10px;
+}
+
+textarea {
+    margin-left: 25%;
+    display: flex;
+    width: 50%;
+    height: 200px;
+}
+
+span {
+    text-align: center;
+    margin-left: 48%;
+}
+
+.error-1 {
+    color: red;
+    font-size: 15px;
+    margin-left: 25%;
+}
+
+.error-2 {
+    color: red;
+    font-size: 15px;
+    margin-left: 25%;
+}
+
+.error-3 {
+    color: red;
+    font-size: 15px;
+    margin-left: 25%;
+}
+
+button {
+    margin-left: 48%;
+    display: flex;  
+    align-content: center;
+    padding: 10px;
+    color: white;
+    background-color: black;
+}
+
+button:hover {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;;
+}

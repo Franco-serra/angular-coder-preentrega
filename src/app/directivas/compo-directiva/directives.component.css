@@ -1,7 +1,6 @@
 :host {
     display: block;
     grid-area: main-content;
-    padding-left: 2.1875rem;
 }
 
 .students-list {
