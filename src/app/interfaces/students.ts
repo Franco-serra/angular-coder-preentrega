@@ -1,6 +1,6 @@
 export interface Students {
+    id: number;
     name: string;
     lastName: string;
-    age: number;
-    average: number;
+    course: string;
 }

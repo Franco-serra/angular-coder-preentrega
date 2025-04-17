@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-form-reactive',
   standalone: false,
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './form-reactive.component.css'
 })
 export class FormReactiveComponent {
+
   public form: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -20,4 +22,5 @@ export class FormReactiveComponent {
 onSubmit() {
   console.log(this.form.value);
 }
+selected = 'curso';
 }
