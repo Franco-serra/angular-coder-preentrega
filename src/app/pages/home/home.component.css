@@ -6,13 +6,14 @@
 .home-grid {
     display: grid;
     grid-template-areas:
-    "main-content";
+    "sidebar main-content";
     grid-template-columns: 1fr;
     min-height: calc(100vh - 160px); 
 }
 
-
-.main-content {
-    grid-area: main-content;
+.sidebar {
+    grid-area: sidebar;
 }
+
+
 

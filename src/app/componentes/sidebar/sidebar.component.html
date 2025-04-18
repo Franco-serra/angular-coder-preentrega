@@ -1,16 +1,45 @@
 
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="main-container">
     <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Menú</p>
     </mat-drawer>
-    <div class="example-sidenav-content">
-        <mat-toolbar>
-            <button 
-                mat-icon-button class="example-icon" 
-                aria-label="Example icon-button with menu icon" 
-                (click)="drawer.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span class="example-spacer"></span>
-        </mat-toolbar>
+
+    <mat-drawer-content class="example-sidenav-content">
+    <mat-toolbar color="primary">
+        <button 
+        mat-icon-button 
+        (click)="drawer.toggle()" 
+        aria-label="Toggle menu">
+        <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <div class="contenido">
+        <form [formGroup]="formGroup" (ngSubmit)="submit()">
+            <div class="form-row">
+            <mat-form-field class="example-full-width" class="w-75">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" class="w-75">
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="lastName" required>
+            </mat-form-field>
+            <br><mat-form-field class="example-full-width" class="w-75">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+            </mat-form-field>
+            <br><mat-form-field class="w-50">
+                <mat-label>Curso</mat-label>
+                <mat-select formControlName="course" required>
+                <mat-option value="angular">Angular</mat-option>
+                <mat-option value="react">React</mat-option>
+                <mat-option value="vuejs">VueJS</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br><button mat-flat-button type="submit">Agregar Estudiante</button>
+            </div>    
+        </form>
     </div>
+    </mat-drawer-content>
 </mat-drawer-container>
