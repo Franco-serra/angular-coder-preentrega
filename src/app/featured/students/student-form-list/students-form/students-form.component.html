@@ -1,0 +1,38 @@
+<div class="contenido">
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="form-row">
+        <mat-form-field class="example-full-width" class="w-75">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="firstName" required>
+            <div *ngIf="formGroup.get('firstName')?.invalid && formGroup.get('firstName')?.touched">
+                First Name is required.
+            </div>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" class="w-75">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="lastName" required>
+            <div *ngIf="formGroup.get('lastName')?.invalid && formGroup.get('lastName')?.touched">
+                Last Name is required.
+            </div>
+        </mat-form-field>
+        <br><mat-form-field class="example-full-width" class="w-75">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <div *ngIf="formGroup.get('email')?.invalid && formGroup.get('email')?.touched">
+                A valid email is required.
+            </div>
+        </mat-form-field>
+        <br><mat-form-field class="w-50">
+            <mat-label>Curso</mat-label>
+            <mat-select formControlName="course" required>
+            <mat-option value="angular">Angular</mat-option>
+            <mat-option value="react">React</mat-option>
+            <mat-option value="vuejs">VueJS</mat-option>
+            <div *ngIf="formGroup.get('course')?.invalid && formGroup.get('course')?.touched">
+                Course is required.
+            </div>
+            </mat-select>
+        </mat-form-field>
+        <br><button mat-flat-button type="submit">Agregar Estudiante</button>
+        </div>    
+    </form>
