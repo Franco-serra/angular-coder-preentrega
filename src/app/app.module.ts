@@ -4,10 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { CoursesModule } from './featured/courses/courses.module';
-import { FormReactiveModule } from './featured/pages/form-reactive/form-reactive.module';
-import { AlumnosModule } from './featured/students/alumnos.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,12 +16,15 @@ import { AlumnosModule } from './featured/students/alumnos.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule,
-    CoursesModule,
-    FormReactiveModule,
-    AlumnosModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
