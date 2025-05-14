@@ -5,31 +5,34 @@ import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'auth/login',
     pathMatch: 'full'
   },
   {
     path: 'auth',
-    loadChildren: () => import('./core/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'dashboard',
     loadChildren: () => import('./featured/dashboard/dashboard.module').then(m => m.DashboardModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'courses',
     loadChildren: () => import('./featured/courses/courses.module').then(m => m.CoursesModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'students',
     loadChildren: () => import('./featured/students/alumnos.module').then(m => m.AlumnosModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'auth/login'
   }
 ];
 

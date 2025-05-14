@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  standalone: false
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -32,6 +35,7 @@ export class LoginComponent implements OnInit {
       this.errorMessage = '';
       
       const { email, password } = this.loginForm.value;
+      
       this.authService.login(email, password).subscribe({
         next: (response) => {
           if (response && response.token) {
@@ -41,7 +45,6 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error('Login error:', error);
           this.errorMessage = error.error?.message || 'Invalid email or password';
         },
         complete: () => {
