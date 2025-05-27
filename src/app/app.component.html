@@ -15,9 +15,6 @@
         <!-- Usuario autenticado -->
         <ng-container *ngIf="isAuthenticated$ | async">
             <span class="user-email">{{ (authUser$ | async)?.email }}</span>
-            <button mat-icon-button (click)="onLogout()" aria-label="Logout">
-                <mat-icon>exit_to_app</mat-icon>
-            </button>
         </ng-container>
     </mat-toolbar>
 

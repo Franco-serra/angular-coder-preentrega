@@ -7,6 +7,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { SharedModule } from '../../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { authFeatureName, authReducer } from '../../core/store/auth-store/auth.reducer';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [
   {
@@ -29,7 +34,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     SharedModule,
-    StoreModule.forFeature(authFeatureName, authReducer)
+    StoreModule.forFeature(authFeatureName, authReducer),
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule
   ]
 })
 export class AuthModule { } 

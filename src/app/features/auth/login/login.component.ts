@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setAuthUser } from '../../../core/store/auth-store/auth.actions';
-import { selectAuthUser } from '../../../core/store/auth-store/auth.selectors';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import * as AuthActions from '../../../core/store/auth-store/auth.actions';
+import { selectAuthError, selectAuthLoading } from '../../../core/store/auth-store/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -15,66 +14,41 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   errorMessage: string = '';
-  isLoading: boolean = false;
-  private authSubscription?: Subscription;
+  private errorSub?: Subscription;
+  isLoading$: Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private store: Store
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+    
+    this.isLoading$ = this.store.select(selectAuthLoading);
   }
 
-  ngOnInit(): void {
-    // Subscribirse al estado del usuario
-    this.authSubscription = this.store.select(selectAuthUser).subscribe(user => {
-      if (user) {
-        console.log('Usuario autenticado, redirigiendo a dashboard');
-        this.router.navigate(['/dashboard']);
+  ngOnInit() {
+    this.errorSub = this.store.select(selectAuthError).subscribe(error => {
+      if (error) {
+        this.errorMessage = error.message || 'Error en el inicio de sesión';
+      } else {
+        this.errorMessage = '';
       }
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
+  ngOnDestroy() {
+    if (this.errorSub) {
+      this.errorSub.unsubscribe();
     }
   }
 
-  onSubmit(): void {
+  onSubmit() {
     if (this.loginForm.valid) {
-      this.isLoading = true;
-      this.errorMessage = '';
-      
       const { email, password } = this.loginForm.value;
-      
-      // Simulamos una respuesta exitosa ya que no tenemos backend
-      const mockResponse = {
-        token: 'mock-token-123',
-        role: 'user'
-      };
-
-      // Dispatch la acción para guardar el usuario en el store
-      this.store.dispatch(setAuthUser({
-        payload: {
-          email: email,
-          role: mockResponse.role,
-          password: ''
-        }
-      }));
-
-      // Guardamos en localStorage
-      localStorage.setItem('currentUser', JSON.stringify({
-        ...mockResponse,
-        email: email
-      }));
-
-      this.isLoading = false;
-      // La redirección se maneja en el subscribe del ngOnInit
+      this.store.dispatch(AuthActions.login({ email, password }));
     } else {
       this.errorMessage = 'Por favor, complete todos los campos correctamente';
     }

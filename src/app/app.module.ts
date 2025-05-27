@@ -9,6 +9,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { rootReducer } from './core/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './core/store/auth-store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     SharedModule,
     HttpClientModule,
     StoreModule.forRoot(rootReducer, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     {

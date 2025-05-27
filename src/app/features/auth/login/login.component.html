@@ -8,7 +8,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" [disabled]="isLoading">
+          <input matInput type="email" formControlName="email" [disabled]="(isLoading$ | async) ?? false">
           <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">
             Email es requerido
           </mat-error>
@@ -19,7 +19,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" formControlName="password" [disabled]="isLoading">
+          <input matInput type="password" formControlName="password" [disabled]="(isLoading$ | async) ?? false">
           <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
             Contraseña es requerida
           </mat-error>
@@ -34,10 +34,10 @@
 
         <button mat-raised-button color="primary" 
                 type="submit" 
-                [disabled]="loginForm.invalid || isLoading"
+                [disabled]="loginForm.invalid || ((isLoading$ | async) ?? false)"
                 class="full-width">
-          <span *ngIf="isLoading">Cargando...</span>
-          <span *ngIf="!isLoading">Iniciar Sesión</span>
+          <mat-spinner diameter="20" *ngIf="(isLoading$ | async) ?? false"></mat-spinner>
+          <span *ngIf="!((isLoading$ | async) ?? false)">Iniciar Sesión</span>
         </button>
       </form>
     </mat-card-content>
