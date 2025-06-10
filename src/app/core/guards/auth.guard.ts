@@ -18,11 +18,9 @@ export class AuthGuard {
       take(1),
       map(isAuthenticated => {
         if (!isAuthenticated) {
-          console.log('Usuario no autenticado, redirigiendo a login');
           this.router.navigate(['/auth/login']);
           return false;
         }
-        console.log('Usuario autenticado, permitiendo acceso');
         return true;
       })
     );

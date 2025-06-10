@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectIsAdmin } from '../../../../core/store/auth-store/auth.selectors';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-list',
@@ -19,7 +20,11 @@ export class StudentsListComponent implements OnInit {
   isAdmin$: Observable<boolean>;
   displayedColumns: string[] = ['fullName', 'lastName', 'email', 'course'];
 
-  constructor(private studentsService: StudentsService, private store: Store) {
+  constructor(
+    private studentsService: StudentsService, 
+    private store: Store,
+    private router: Router
+  ) {
     this.isAdmin$ = this.store.select(selectIsAdmin);
     
     // Add actions column for admins
@@ -39,18 +44,15 @@ export class StudentsListComponent implements OnInit {
   }
 
   onView(id: number): void {
-    // Implement view logic
-    console.log('Ver estudiante:', id);
+    this.router.navigate(['/students', id, 'view']);
   }
 
   onEdit(id: number): void {
-    // Implement edit logic
-    console.log('Editar estudiante:', id);
+    this.router.navigate(['/students', id, 'edit']);
   }
 
   onDelete(id: number): void {
-    // Implement delete logic
-    if (id) {
+    if (confirm('¿Estás seguro de que deseas eliminar este estudiante?')) {
       this.studentsService.deleteStudent(id);
     }
   }

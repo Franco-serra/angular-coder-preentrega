@@ -20,6 +20,8 @@ export class FormReactiveComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      // Procesar el formulario
+    }
   }
 }
