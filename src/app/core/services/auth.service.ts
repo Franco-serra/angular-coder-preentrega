@@ -22,7 +22,7 @@ export class AuthService {
       setTimeout(() => {
         const mockResponse = {
           token: 'mock-token-123',
-          role: 'user',
+          role: email.toLowerCase().includes('admin') ? 'admin' : 'user',
           email: email
         };
         observer.next(mockResponse);

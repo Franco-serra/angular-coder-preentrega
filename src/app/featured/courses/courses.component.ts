@@ -4,15 +4,14 @@ import { Observable } from 'rxjs';
 import { selectIsAdmin } from '../../core/store/auth-store/auth.selectors';
 
 @Component({
-  selector: 'app-alumnos',
-  standalone: false,
-  templateUrl: './alumnos.component.html',
-  styleUrl: './alumnos.component.css'
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.css']
 })
-export class AlumnosComponent {
+export class CoursesComponent {
   isAdmin$: Observable<boolean>;
 
   constructor(private store: Store) {
     this.isAdmin$ = this.store.select(selectIsAdmin);
   }
-}
+} 

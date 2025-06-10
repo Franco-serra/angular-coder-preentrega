@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectIsAuthenticated } from '../../core/store/auth-store/auth.selectors';
+import { selectIsAuthenticated, selectIsAdmin } from '../../core/store/auth-store/auth.selectors';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,9 +12,11 @@ import { selectIsAuthenticated } from '../../core/store/auth-store/auth.selector
 export class SidebarComponent {
   currentView: string = 'formReactive';
   isAuthenticated$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
 
   constructor(private store: Store) {
     this.isAuthenticated$ = this.store.select(selectIsAuthenticated);
+    this.isAdmin$ = this.store.select(selectIsAdmin);
   }
 
   showView(viewName: string) {

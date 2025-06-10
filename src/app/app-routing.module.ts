@@ -28,6 +28,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'users',
+    loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard],
+    data: { roles: ['admin'] }
+  },
+  {
     path: '**',
     redirectTo: 'dashboard'
   }

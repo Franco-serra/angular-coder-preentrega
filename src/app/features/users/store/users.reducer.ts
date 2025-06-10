@@ -1,0 +1,60 @@
+import { createFeature, createReducer, on } from '@ngrx/store';
+import { UsersState } from '../models/user.model';
+import { UsersActions } from './users.actions';
+
+export const initialState: UsersState = {
+  users: [],
+  selectedUser: null,
+  loading: false,
+  error: null
+};
+
+export const usersFeature = createFeature({
+  name: 'users',
+  reducer: createReducer(
+    initialState,
+    
+    on(UsersActions['loadUsers'], (state) => ({
+      ...state,
+      loading: true,
+      error: null
+    })),
+    
+    on(UsersActions['loadUsersSuccess'], (state, { users }) => ({
+      ...state,
+      users,
+      loading: false
+    })),
+    
+    on(UsersActions['loadUsersFailure'], (state, { error }) => ({
+      ...state,
+      error,
+      loading: false
+    })),
+    
+    on(UsersActions['createUserSuccess'], (state, { user }) => ({
+      ...state,
+      users: [...state.users, user]
+    })),
+    
+    on(UsersActions['updateUserSuccess'], (state, { user }) => ({
+      ...state,
+      users: state.users.map(u => u.id === user.id ? user : u)
+    })),
+    
+    on(UsersActions['deleteUserSuccess'], (state, { userId }) => ({
+      ...state,
+      users: state.users.filter(u => u.id !== userId)
+    })),
+    
+    on(UsersActions['setSelectedUser'], (state, { userId }) => ({
+      ...state,
+      selectedUser: state.users.find(u => u.id === userId) || null
+    })),
+    
+    on(UsersActions['clearSelectedUser'], (state) => ({
+      ...state,
+      selectedUser: null
+    }))
+  )
+}); 

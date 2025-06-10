@@ -13,6 +13,10 @@
             <mat-icon>school</mat-icon>
             <span>Cursos</span>
         </a>
+        <a mat-list-item routerLink="/users" *ngIf="isAdmin$ | async">
+            <mat-icon>manage_accounts</mat-icon>
+            <span>Usuarios</span>
+        </a>
         <mat-divider></mat-divider>
         <a mat-list-item routerLink="/auth/logout" class="logout-link">
             <mat-icon>exit_to_app</mat-icon>

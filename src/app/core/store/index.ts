@@ -11,3 +11,9 @@ export const rootReducer: ActionReducerMap<RootState> = {
     [counterFeaturedName]: counterReducer,
     [authFeatureName]: authReducer
 }
+
+export * from './app.state';
+export * from './auth-store/auth.actions';
+export * from './auth-store/auth.reducer';
+export * from './auth-store/auth.selectors';
+export * from './auth-store/auth.effects';
