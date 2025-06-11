@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { environment } from '../../../../environments/environment';
 
@@ -8,27 +9,50 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-  private apiUrl = `${environment.apiUrl}/users`;
+  private users: User[] = [];
+  private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+  constructor(private http: HttpClient) {
+    // Cargar usuarios del db.json al iniciar el servicio
+    this.loadUsers();
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+  private loadUsers(): void {
+    this.http.get<User[]>(`${this.apiUrl}/users`)
+      .subscribe(users => {
+        this.users = users;
+      });
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`);
+  }
+
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
 
   createUser(user: Omit<User, 'id'>): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user);
+    return this.http.post<User>(`${this.apiUrl}/users`, user).pipe(
+      tap(newUser => {
+        this.users = [...this.users, newUser];
+      })
+    );
   }
 
-  updateUser(id: number, user: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${id}`, user);
+  updateUser(id: string, user: Partial<User>): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/users/${id}`, user).pipe(
+      tap(updatedUser => {
+        this.users = this.users.map(u => u.id === id ? updatedUser : u);
+      })
+    );
   }
 
-  deleteUser(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/users/${id}`).pipe(
+      tap(() => {
+        this.users = this.users.filter(u => u.id !== id);
+      })
+    );
   }
 } 

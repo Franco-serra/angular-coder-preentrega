@@ -12,6 +12,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './core/store/auth-store/auth.effects';
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +26,7 @@ import { AuthEffects } from './core/store/auth-store/auth.effects';
     HttpClientModule,
     StoreModule.forRoot(rootReducer, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [
     {

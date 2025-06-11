@@ -55,10 +55,9 @@ export class AuthEffects {
                 ofType(AuthActions.logout),
                 tap(() => {
                     this.authService.logout();
-                    this.router.navigate(['/auth/login']);
-                }),
-                map(() => AuthActions.logoutSuccess())
-            )
+                })
+            ),
+            { dispatch: false }
         );
     }
 } 

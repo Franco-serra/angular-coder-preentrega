@@ -12,15 +12,15 @@ export const UsersActions = createActionGroup({
     'Create User Success': props<{ user: User }>(),
     'Create User Failure': props<{ error: string }>(),
 
-    'Update User': props<{ userId: number; user: Partial<User> }>(),
+    'Update User': props<{ userId: string; user: Partial<User> }>(),
     'Update User Success': props<{ user: User }>(),
     'Update User Failure': props<{ error: string }>(),
 
-    'Delete User': props<{ userId: number }>(),
-    'Delete User Success': props<{ userId: number }>(),
+    'Delete User': props<{ userId: string }>(),
+    'Delete User Success': props<{ userId: string }>(),
     'Delete User Failure': props<{ error: string }>(),
 
-    'Set Selected User': props<{ userId: number }>(),
+    'Set Selected User': props<{ userId: string }>(),
     'Clear Selected User': emptyProps(),
   }
 }); 

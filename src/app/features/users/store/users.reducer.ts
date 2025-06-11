@@ -1,5 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { UsersState } from '../models/user.model';
+import { User } from '../models/user.model';
 import { UsersActions } from './users.actions';
 
 export const initialState: UsersState = {
@@ -14,45 +15,84 @@ export const usersFeature = createFeature({
   reducer: createReducer(
     initialState,
     
-    on(UsersActions['loadUsers'], (state) => ({
+    on(UsersActions.loadUsers, (state) => ({
       ...state,
       loading: true,
       error: null
     })),
     
-    on(UsersActions['loadUsersSuccess'], (state, { users }) => ({
+    on(UsersActions.loadUsersSuccess, (state, { users }) => ({
       ...state,
       users,
       loading: false
     })),
     
-    on(UsersActions['loadUsersFailure'], (state, { error }) => ({
+    on(UsersActions.loadUsersFailure, (state, { error }) => ({
       ...state,
       error,
       loading: false
     })),
     
-    on(UsersActions['createUserSuccess'], (state, { user }) => ({
+    on(UsersActions.createUser, (state) => ({
       ...state,
-      users: [...state.users, user]
+      loading: true,
+      error: null
     })),
     
-    on(UsersActions['updateUserSuccess'], (state, { user }) => ({
+    on(UsersActions.createUserSuccess, (state, { user }) => ({
       ...state,
-      users: state.users.map(u => u.id === user.id ? user : u)
+      users: [...state.users, user],
+      loading: false
     })),
     
-    on(UsersActions['deleteUserSuccess'], (state, { userId }) => ({
+    on(UsersActions.createUserFailure, (state, { error }) => ({
       ...state,
-      users: state.users.filter(u => u.id !== userId)
+      error,
+      loading: false
     })),
     
-    on(UsersActions['setSelectedUser'], (state, { userId }) => ({
+    on(UsersActions.updateUser, (state) => ({
       ...state,
-      selectedUser: state.users.find(u => u.id === userId) || null
+      loading: true,
+      error: null
     })),
     
-    on(UsersActions['clearSelectedUser'], (state) => ({
+    on(UsersActions.updateUserSuccess, (state, { user }) => ({
+      ...state,
+      users: state.users.map((u: User) => u.id === user.id ? user : u),
+      loading: false
+    })),
+    
+    on(UsersActions.updateUserFailure, (state, { error }) => ({
+      ...state,
+      error,
+      loading: false
+    })),
+    
+    on(UsersActions.deleteUser, (state) => ({
+      ...state,
+      loading: true,
+      error: null
+    })),
+    
+    on(UsersActions.deleteUserSuccess, (state, { userId }) => ({
+      ...state,
+      users: state.users.filter((u: User) => u.id !== userId.toString()),
+      loading: false
+    })),
+    
+    on(UsersActions.deleteUserFailure, (state, { error }) => ({
+      ...state,
+      error,
+      loading: false
+    })),
+    
+    on(UsersActions.setSelectedUser, (state, { userId }) => ({
+      ...state,
+      selectedUser: state.users.find((u: User) => u.id === userId.toString()) || null
+    })),
+    
+    on(UsersActions.clearSelectedUser, (state) => ({
       ...state,
       selectedUser: null
     }))

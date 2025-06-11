@@ -1,5 +1,5 @@
 .container {
-  padding: 20px;
+  padding: 2rem;
 }
 
 .container h1 {
@@ -7,7 +7,14 @@
   color: #333;
 }
 
-.container .loading-spinner {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.loading-spinner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,4 +37,21 @@
 
 .mat-mdc-icon-button {
   margin: 0 4px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  width: 120px;
+  text-align: center;
+}
+
+.mat-column-id {
+  width: 80px;
+}
+
+.mat-column-role {
+  width: 120px;
 } 
