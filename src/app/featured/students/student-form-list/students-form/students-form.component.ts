@@ -4,7 +4,10 @@ import { Student } from '../../../../shared/interface/Students';
 import { StudentsService } from '../../../../core/services/students.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
+<<<<<<< HEAD
 import { TitleService } from '../../../../core/services/title.service';
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 
 @Component({
   selector: 'app-students-form',
@@ -22,8 +25,12 @@ export class StudentsFormComponent implements OnInit {
     private fb: FormBuilder, 
     private studentsService: StudentsService,
     private route: ActivatedRoute,
+<<<<<<< HEAD
     private router: Router,
     private titleService: TitleService
+=======
+    private router: Router
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   ) {
     this.formGroup = this.fb.group({
       firstName: ['', Validators.required],
@@ -39,11 +46,14 @@ export class StudentsFormComponent implements OnInit {
       this.isViewMode = lastSegment === 'view';
       this.isEditMode = lastSegment === 'edit';
       
+<<<<<<< HEAD
       let title = 'Estudiantes';
       if (this.isEditMode) title = 'Editar Estudiante';
       if (this.isViewMode) title = 'Ver Estudiante';
       this.titleService.setTitle(title);
       
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
       if (this.isViewMode || this.isEditMode) {
         this.route.params.pipe(
           map(params => params['id']),

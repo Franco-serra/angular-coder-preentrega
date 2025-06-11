@@ -3,21 +3,30 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectIsAuthenticated, selectAuthUser } from './core/store/auth-store/auth.selectors';
 import { MatDrawer } from '@angular/material/sidenav';
+<<<<<<< HEAD
 import { TitleService } from './core/services/title.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+<<<<<<< HEAD
   styleUrls: ['./app.component.css'],
   standalone: false
+=======
+  standalone: false,
+  styleUrl: './app.component.css'
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 })
 export class AppComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
   title = 'angular-coder';
   isAuthenticated$: Observable<boolean>;
   authUser$: Observable<any>;
+<<<<<<< HEAD
   title$: Observable<string>;
 
   constructor(
@@ -45,3 +54,13 @@ export class AppComponent {
     });
   }
 } 
+=======
+
+  constructor(
+    private store: Store
+  ) {
+    this.isAuthenticated$ = this.store.select(selectIsAuthenticated);
+    this.authUser$ = this.store.select(selectAuthUser);
+  }
+}
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655

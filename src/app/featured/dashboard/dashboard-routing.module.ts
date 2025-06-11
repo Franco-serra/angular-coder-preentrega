@@ -6,8 +6,12 @@ import { CounterComponent } from './counter/counter.component';
 const routes: Routes = [
   {
     path: '',
+<<<<<<< HEAD
     component: DashboardComponent,
     data: { title: 'Dashboard' }
+=======
+    component: DashboardComponent
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   },
   {
     path: 'counter',

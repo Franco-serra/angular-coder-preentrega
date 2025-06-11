@@ -5,8 +5,12 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectIsAdmin } from '../../../../core/store/auth-store/auth.selectors';
 import { map } from 'rxjs/operators';
+<<<<<<< HEAD
 import { Router, ActivatedRoute } from '@angular/router';
 import { TitleService } from '../../../../core/services/title.service';
+=======
+import { Router } from '@angular/router';
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 
 @Component({
   selector: 'app-students-list',
@@ -24,9 +28,13 @@ export class StudentsListComponent implements OnInit {
   constructor(
     private studentsService: StudentsService, 
     private store: Store,
+<<<<<<< HEAD
     private router: Router,
     private titleService: TitleService,
     private route: ActivatedRoute
+=======
+    private router: Router
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   ) {
     this.isAdmin$ = this.store.select(selectIsAdmin);
     
@@ -40,8 +48,11 @@ export class StudentsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.studentsService.studentsObs;
+<<<<<<< HEAD
     const title = this.route.snapshot.data['title'] || 'Estudiantes';
     this.titleService.setTitle(title);
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   }
 
   addStudents(newStudents: Student[]): void {

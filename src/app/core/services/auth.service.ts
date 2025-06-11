@@ -29,15 +29,22 @@ export class AuthService {
         if (user.password !== password) {
           throw new Error('Contraseña incorrecta');
         }
+<<<<<<< HEAD
         const userData = {
+=======
+        return {
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
           token: 'mock-token-123',
           id: user.id,
           name: user.name,
           email: user.email,
           role: user.role
         };
+<<<<<<< HEAD
         localStorage.setItem('currentUser', JSON.stringify(userData));
         return userData;
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
       }),
       catchError(error => {
         return throwError(() => new Error(error.message || 'Error en la autenticación'));
@@ -59,9 +66,12 @@ export class AuthService {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user).token : null;
   }
+<<<<<<< HEAD
 
   getCurrentUser(): any {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user) : null;
   }
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 } 

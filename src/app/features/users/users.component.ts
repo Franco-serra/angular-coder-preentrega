@@ -13,8 +13,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { User } from './models/user.model';
 import { selectIsAdmin } from '../../core/store/auth-store/auth.selectors';
+<<<<<<< HEAD
 import { ActivatedRoute } from '@angular/router';
 import { TitleService } from '../../core/services/title.service';
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 
 @Component({
   selector: 'app-users',
@@ -43,9 +46,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
+<<<<<<< HEAD
     private dialog: MatDialog,
     private titleService: TitleService,
     private route: ActivatedRoute
+=======
+    private dialog: MatDialog
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   ) {
     this.users$ = this.store.select(selectUsers);
     this.loading$ = this.store.select(selectLoading);
@@ -65,8 +72,11 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadUsers();
+<<<<<<< HEAD
     const title = this.route.snapshot.data['title'] || 'Usuarios';
     this.titleService.setTitle(title);
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   }
 
   ngOnDestroy(): void {

@@ -21,12 +21,17 @@
     },
     {
       "name": "admin2",
+<<<<<<< HEAD
       "email": "admin2@example.com",
+=======
+      "email": "admin23@example.com",
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
       "role": "admin",
       "password": "admin12345",
       "id": "df22"
     },
     {
+<<<<<<< HEAD
       "name": "user",
       "email": "user@example.com",
       "role": "user",
@@ -39,6 +44,13 @@
       "role": "user",
       "password": "admin12345",
       "id": "983e"
+=======
+      "id": "86ff",
+      "name": "user2",
+      "email": "user2@example.com",
+      "role": "user",
+      "password": "admin12345"
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
     }
   ],
   "courses": [

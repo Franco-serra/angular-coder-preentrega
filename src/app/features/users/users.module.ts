@@ -18,7 +18,10 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { usersFeature } from './store/users.reducer';
 import { UsersEffects } from './store/users.effects';
+<<<<<<< HEAD
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+=======
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
 
 @NgModule({
   imports: [
@@ -38,8 +41,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     StoreModule.forFeature(usersFeature),
     EffectsModule.forFeature([UsersEffects]),
     UsersComponent,
+<<<<<<< HEAD
     UserFormComponent,
     UserProfileComponent
+=======
+    UserFormComponent
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
   ]
 })
 export class UsersModule { } 

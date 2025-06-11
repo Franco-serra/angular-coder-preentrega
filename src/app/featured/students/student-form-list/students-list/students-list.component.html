@@ -28,10 +28,17 @@
       <button mat-icon-button color="primary" (click)="onView(element.id)" matTooltip="Ver detalles">
         <mat-icon>visibility</mat-icon>
       </button>
+<<<<<<< HEAD
       <button mat-icon-button color="accent" (click)="onEdit(element.id)" matTooltip="Editar" *ngIf="isAdmin$ | async">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar" *ngIf="isAdmin$ | async">
+=======
+      <button mat-icon-button color="accent" (click)="onEdit(element.id)" matTooltip="Editar">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onDelete(element.id)" matTooltip="Eliminar">
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
         <mat-icon>delete</mat-icon>
       </button>
     </td>

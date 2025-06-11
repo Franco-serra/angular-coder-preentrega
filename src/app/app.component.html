@@ -11,8 +11,13 @@
         </button>
         <span>AngularCoder</span>
         <span class="toolbar-spacer"></span>
+<<<<<<< HEAD
         <span class="route-title" *ngIf="isAuthenticated$ | async">{{ title$ | async }}</span>
         <span class="toolbar-spacer"></span>
+=======
+        
+        <!-- Usuario autenticado -->
+>>>>>>> 08d621df9b9912ee41fefb91e8bd5db62ab42655
         <ng-container *ngIf="isAuthenticated$ | async">
             <span class="user-email">{{ (authUser$ | async)?.email }}</span>
         </ng-container>
